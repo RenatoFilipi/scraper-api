@@ -13,6 +13,16 @@ class AnimeController {
       return next(error);
     }
   };
+
+  getAnimeListByName = async (request: Request, response: Response, next: NextFunction) => {
+    try {
+      const { parameters } = request.body;
+      const data = await this.animeService.getAnimeListByName(parameters);
+      return response.json(data);
+    } catch (error: unknown) {
+      return next(error);
+    }
+  };
 }
 
 export default AnimeController;

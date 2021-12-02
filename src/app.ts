@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Request, Response } from "express";
 import animeRouter from "./routes/animeRouter";
 
 const app = express();
