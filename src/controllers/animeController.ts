@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
-import MalService from "../../services/animes/malService";
+import MalService from "../services/animeService";
 
-class MalController {
+class AnimeController {
   constructor(private malService: MalService) {}
 
   getAnimeByName = async (request: Request, response: Response, next: NextFunction) => {
@@ -15,4 +15,4 @@ class MalController {
   };
 }
 
-export default MalController;
+export default AnimeController;

@@ -1,10 +1,10 @@
 import express from "express";
-import malRouter from "./routes/animes/malRouter";
+import animeRouter from "./routes/animeRouter";
 
 const app = express();
 app.use(express.json());
 
 //routes
-app.use(malRouter);
+app.use(animeRouter);
 
 export default app;
