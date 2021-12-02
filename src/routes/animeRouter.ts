@@ -10,7 +10,7 @@ animeRouter.post("/api/v1/animes/getanimebyname", (request: Request, response: R
   return animeController.getAnimeByName(request, response, next);
 });
 
-animeRouter.post("api/v1/animes/getanimelistbyname", (request: Request, response: Response, next: NextFunction) => {
+animeRouter.post("/api/v1/animes/getanimelistbyname", (request: Request, response: Response, next: NextFunction) => {
   return animeController.getAnimeListByName(request, response, next);
 });
 
