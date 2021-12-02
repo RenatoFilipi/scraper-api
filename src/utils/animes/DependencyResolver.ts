@@ -1,8 +1,8 @@
-import MalController from "../../controllers/animes/malController";
-import MalService from "../../services/animes/malService";
+import AnimeController from "../../controllers/animeController";
+import AnimeService from "../../services/animeService";
 
-const malService = new MalService();
+const animeService = new AnimeService();
 
-const malController = new MalController(malService);
+const animeController = new AnimeController(animeService);
 
-export { malController };
+export { animeController };

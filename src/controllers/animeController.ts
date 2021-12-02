@@ -1,13 +1,13 @@
 import { Request, Response, NextFunction } from "express";
-import MalService from "../../services/animes/malService";
+import AnimeService from "../services/animeService";
 
-class MalController {
-  constructor(private malService: MalService) {}
+class AnimeController {
+  constructor(private animeService: AnimeService) {}
 
   getAnimeByName = async (request: Request, response: Response, next: NextFunction) => {
     try {
       const { parameters } = request.body;
-      const data = await this.malService.getAnimeByName(parameters);
+      const data = await this.animeService.getAnimeByName(parameters);
       return response.json(data);
     } catch (error: unknown) {
       return next(error);
@@ -15,4 +15,4 @@ class MalController {
   };
 }
 
-export default MalController;
+export default AnimeController;
