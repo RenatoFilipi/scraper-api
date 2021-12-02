@@ -3,7 +3,7 @@ import { animeController } from "../utils/animes/DependencyResolver";
 
 const animeRouter = Router();
 
-animeRouter.post("/api/v1/mal/getanimebyname", (request: Request, response: Response, next: NextFunction) => {
+animeRouter.post("/api/v1/animes/getanimebyname", (request: Request, response: Response, next: NextFunction) => {
   return animeController.getAnimeByName(request, response, next);
 });
 
