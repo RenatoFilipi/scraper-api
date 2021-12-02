@@ -1,6 +1,10 @@
 import { IAnimeExternal, IAnimeParameters } from "../interfaces/IAnime";
-import { IAnimeGetAnimeByNameDTO } from "../dtos/IAnimeDTO";
-import { JSDOM } from "jsdom";
+import {
+  IAnimeGetAnimeByNameDTO,
+  IAnimeGetAnimeListByNameDTO,
+  IAnimeGetAnimeListByNameDataDTO,
+} from "../dtos/IAnimeDTO";
+import cheerio from "cheerio";
 
 class AnimeController {
   constructor(private animeExternal: IAnimeExternal) {}
@@ -13,11 +17,25 @@ class AnimeController {
   };
 
   getAnimeListByName = async (parameters: IAnimeParameters) => {
-    const html = await this.animeExternal.getAnimeListByName(parameters);
-    const dom = new JSDOM(html);
-    const article = dom.window.document.querySelector(".content-left article").textContent;
-    console.log(article);
-    return { msg: "OK" };
+    const result = await this.animeExternal.getAnimeListByName(parameters);
+    const response = <IAnimeGetAnimeListByNameDTO>{
+      anime: parameters.anime,
+      results: 0,
+      data: [],
+    };
+    const $ = cheerio.load(result);
+
+    $("article")
+      .first()
+      .find(".list.di-t.w100")
+      .each((index, elem) => {
+        const data = <IAnimeGetAnimeListByNameDataDTO>{
+          title: $(elem).find(".information.di-tc.va-t.pt4.pl8").find(".hoverinfo_trigger.fw-b.fl-l").text(),
+        };
+        response.data.push(data);
+      });
+    response.results = response.data.length;
+    return response;
   };
 }
 
