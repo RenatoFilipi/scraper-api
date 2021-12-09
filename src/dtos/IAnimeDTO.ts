@@ -11,3 +11,12 @@ export interface IAnimeGetAnimeListByNameDTO {
 export interface IAnimeGetAnimeListByNameDataDTO {
   title: string;
 }
+
+export interface IAnimeGetAnimeByLinkDTO {
+  title: string;
+  score: number;
+  ranked: number;
+  popularity: number;
+  members: string;
+  synopsis: string;
+}

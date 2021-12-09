@@ -1,4 +1,4 @@
-import { IAnimeExternal, IAnimeParameters } from "../interfaces/IAnime";
+import { IAnimeExternal, IAnimeParameters, IMyAnimeListLinkParameters } from "../interfaces/IAnime";
 import axios from "axios";
 
 class AnimeExternal implements IAnimeExternal {
@@ -12,6 +12,16 @@ class AnimeExternal implements IAnimeExternal {
         accept: process.env.MAL_HEADERS_ACCEPT,
       },
     });
+    return html;
+  };
+
+  getAnimeByMyAnimeListLink = async (parameters: IMyAnimeListLinkParameters): Promise<string> => {
+    const { data: html } = await axios.get(`${parameters.link}`, {
+      headers: {
+        accept: process.env.MAL_HEADERS_ACCEPT,
+      },
+    });
+
     return html;
   };
 }

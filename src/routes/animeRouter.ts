@@ -4,8 +4,12 @@ import HttpException from "../exceptions/HttpExceptions";
 
 const animeRouter = Router();
 
-// requests
+// hc
+animeRouter.post("/api/hc", (request: Request, response: Response, next: NextFunction) => {
+  return response.json({ msg: "OK" });
+});
 
+// requests
 animeRouter.post("/api/v1/animes/getanimebyname", (request: Request, response: Response, next: NextFunction) => {
   return animeController.getAnimeByName(request, response, next);
 });
@@ -14,14 +18,16 @@ animeRouter.post("/api/v1/animes/getanimelistbyname", (request: Request, respons
   return animeController.getAnimeListByName(request, response, next);
 });
 
-// 404
+animeRouter.post("/api/v1/animes/getanimebylink", (request: Request, response: Response, next: NextFunction) => {
+  animeController.getAnimeByMyAnimeListLink(request, response, next);
+});
 
+// 404
 animeRouter.use((request: Request, response: Response) => {
   return response.status(404).json({ Error: 404 });
 });
 
 // error
-
 animeRouter.use((error: unknown, request: Request, response: Response, next: NextFunction) => {
   if (error instanceof HttpException) {
     return response.status(error.status).json({ message: error.message });
