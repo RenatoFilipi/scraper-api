@@ -32,6 +32,8 @@ class AnimeController {
       .each((index, elem) => {
         const data = <IAnimeGetAnimeListByNameDataDTO>{
           title: $(elem).find(".information.di-tc.va-t.pt4.pl8").find(".hoverinfo_trigger.fw-b.fl-l").text(),
+          type: $(elem).find(".information.di-tc.va-t.pt4.pl8").find(".pt8.fs10.lh14.fn-grey4 a").text(),
+          link: $(elem).find(".information.di-tc.va-t.pt4.pl8").find(".hoverinfo_trigger.fw-b.fl-l").attr("href"),
         };
         response.data.push(data);
       });

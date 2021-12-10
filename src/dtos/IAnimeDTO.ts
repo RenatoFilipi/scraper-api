@@ -10,6 +10,8 @@ export interface IAnimeGetAnimeListByNameDTO {
 
 export interface IAnimeGetAnimeListByNameDataDTO {
   title: string;
+  type: string;
+  link: string;
 }
 
 export interface IAnimeGetAnimeByLinkDTO {
